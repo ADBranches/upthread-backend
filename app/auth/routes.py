@@ -86,7 +86,7 @@ def refresh():
     current_identity = get_jwt_identity()  # will be user.id (string)
     claims = get_jwt()                     # optional, has "role"
     new_access = create_access_token(
-        identity=current_identity,
+        identity=str(current_identity),  # must be a string, not int, since JWT spec current_identity,
         additional_claims={"role": claims.get("role")}
     )
     return jsonify({"access_token": new_access}), 200

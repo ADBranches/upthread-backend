@@ -5,6 +5,7 @@ import os
 from app.extensions import db, jwt, bcrypt, cors, migrate, ma
 from app.auth.routes import auth_bp
 from app.routes.protected import protected_bp  # we'll create this
+from app.routes.service_routes import service_bp
 
 from datetime import timedelta
 
@@ -31,5 +32,6 @@ def create_app():
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(protected_bp)
+    app.register_blueprint(service_bp)
 
     return app
